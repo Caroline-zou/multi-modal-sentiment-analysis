@@ -23,7 +23,23 @@ transformers==4.29.1
 
 ## Repository Structure
 
-
+│  config.json #load all the parameters
+│  data_utils.py #process raw data to json files
+│  main.py 
+│  multiClassification.py #conbine text and image features for sentiment analysis
+│  multiModalDataset.py #load data for multiClassifier
+│  README.md
+│  requirements.txt
+│
+├─baseline_model
+│  │  data_pipelines.py #load data for imgClassification and textClassification
+│  │  imgClassification.py #sentiment analysis using only image features
+│  │  runUtils.py #functions for train validate and predict
+│  │  textClassification.py #sentiment analysis using only text features
+│
+├─data
+└─model_structure
+        model.png
 
 ## Model Structure
 
