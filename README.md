@@ -27,7 +27,7 @@ transformers==4.29.1
 
 ## Model Structure
 
-![image-20230713144958802](D:\typora_pic\image-20230713144958802.png)
+![](./model_structure/model.png)
 
 
 
