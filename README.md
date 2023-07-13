@@ -33,6 +33,10 @@ transformers==4.29.1
 
 ## How to run
 
+First of all, download the data from the [link](https://drive.google.com/drive/folders/1GVmcOQvM2UjBGSfF6q9tS_6fAZctoX_Y?usp=sharing) here or you can use your own data, put it in the data folder
+
+
+
 **tran and validate the program**
 
 `python main.py --train --test --mode [mode]`
@@ -65,39 +69,3 @@ transformers==4.29.1
 2. Multimodal Sentiment Analysis Representations Learning via Contrastive Learning with Condense Attention Fusion https://www.mdpi.com/1424-8220/23/5/2679
 3. Multimodal sentiment analysis based on multi-head attention mechanism https://www.researchgate.net/publication/339777957_Multimodal_sentiment_analysis_based_on_multi-head_attention_mechanism
 4. VistaNet: Visual Aspect Attention Network for Multimodal Sentiment Analysis https://ojs.aaai.org/index.php/AAAI/article/view/3799
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 
