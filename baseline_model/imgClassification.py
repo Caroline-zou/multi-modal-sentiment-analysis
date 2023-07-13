@@ -11,7 +11,6 @@ from sklearn.model_selection import KFold
 from baseline_model.data_pipelines import getImgDataset
 from baseline_model.runUtils import train, val, predict
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# config.setup_seed()
 
 class ReluOrGelu(nn.Module):
     def __init__(self, activate_type: str):
@@ -30,9 +29,6 @@ class ImgModel(nn.Module):
         self.config = config
         if config['img_model'] == 'ResNet':
             self.resnet = cv_models.resnet34(pretrained=True)
-            # self.resnet_encoder = nn.Sequential(*(list(self.resnet.children())[:-2]))
-            # self.resnet_avgpool = nn.Sequential(list(self.resnet.children())[-2])
-            # self.output_dim = self.resnet_encoder[7][2].conv3.out_channels
             for param in self.resnet.parameters():
                 param.requires_grad_(True)
             self.classifier = nn.Sequential(
@@ -43,9 +39,6 @@ class ImgModel(nn.Module):
             self.efnet = models.efficientnet_b0(pretrained=True)
             for param in self.efnet.parameters():
                 param.requires_grad_(True)
-                
-        # self.dropout = nn.Dropout(0.1)
-        # self.fc = nn.Linear(1280, 3)
             self.classifier = nn.Sequential(
                 nn.Linear(1280, 3),
                 ReluOrGelu("gelu")
@@ -54,11 +47,6 @@ class ImgModel(nn.Module):
     def forward(self, data):
         imgs = data['img'].to(device)
         if self.config['img_model'] =='ResNet':
-            # image_encoder = self.resnet_encoder(imgs)
-            # # image_encoder = self.conv_output(image_encoder)
-            # image_cls = self.resnet_avgpool(image_encoder)
-            # image_cls = torch.flatten(image_cls, 1)
-            # return image_encoder, image_cls
             resnet_features = nn.Sequential(*list(self.resnet.children())[:-1])
             features = resnet_features(imgs)
             # lstm = nn.LSTM(input_size=512, hidden_size=768, num_layers=1, batch_first=True).to(device)
@@ -83,14 +71,9 @@ class ImgModel(nn.Module):
             # Remove the last fully connected layer
             efnet_features = nn.Sequential(*list(self.efnet.children())[:-1])
             features = efnet_features(imgs)
-            # print(features.shape)
             out = torch.flatten(features, start_dim=1).to(device)
-            # print(out.shape)
-            # self.fc = nn.Linear(out.shape[1], 3).to(device)
-            # out = self.fc(self.dropout(out))
             print(out.shape)
             out = self.classifier(out)
-            # features = nn.Linear(1280, 3)
         return out, features
 
 

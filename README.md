@@ -23,6 +23,7 @@ transformers==4.29.1
 
 ## Repository Structure
 
+```
 │  config.json #load all the parameters
 │  data_utils.py #process raw data to json files
 │  main.py 
@@ -40,6 +41,9 @@ transformers==4.29.1
 ├─data
 └─model_structure
         model.png
+```
+
+
 
 ## Model Structure
 

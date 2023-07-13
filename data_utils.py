@@ -135,7 +135,6 @@ def clean_data():
         writer.writerow(header)
         writer.writerows(sorted_rows)
     train_df = pd.read_csv(config['train_data_csv'])
-    # train_df['TEXT'] = train_df['TEXT'].apply(remove)
     train_df['CLEANED_TEXT'] = train_df['TEXT'].apply(lambda x: remove(x.lower()))
     train_df.to_csv(config['train_data_csv'], index=False)
     with open(config['test_data_csv'], 'r', newline='', encoding='utf-8') as file:

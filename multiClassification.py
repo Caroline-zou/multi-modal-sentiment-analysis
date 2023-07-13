@@ -11,9 +11,6 @@ from transformers import RobertaModel, RobertaConfig
 from baseline_model.imgClassification import ImgModel
 from baseline_model.textClassification import TextModel
 
-# sys.path.append(config.root_path)
-
-# config.setup_seed()
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -84,8 +81,6 @@ class MultiModel(nn.Module):
         text_out, text_features = self.text_model(data)
         img_out, img_features = self.img_model(data)
         
-        # print(img_features)
-        # print(img_out.toTensor().shape)
         
         if self.config['fuse_model'] == 'attention':
             img_features = img_features.squeeze(-1).squeeze(-1)
@@ -122,7 +117,6 @@ def run(config):
         {'params': down_params, 'lr': config['multi_lr']}
     ])
     dataset = getMultiModalDataset(config['train_data_json'])
-    # print(len(dataset))
     train_dataset = Subset(dataset, range(0, 3500))
     val_dataset = Subset(dataset, range(3500, 4000))
     train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True)
