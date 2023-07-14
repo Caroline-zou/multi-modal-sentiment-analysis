@@ -10,7 +10,6 @@ pip install -r requirements.txt
 matplotlib==3.7.1
 numpy==1.24.3
 pandas==2.0.1
-Pillow==9.4.0
 Pillow==10.0.0
 scikit_learn==1.3.0
 torch==1.13.1
